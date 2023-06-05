@@ -1,4 +1,4 @@
-f <- function(a,q=a,n=Inf){
+`f` <- function(a,q=a,n=Inf){
   out <- 1
   outold <- 2
   subt <- a
