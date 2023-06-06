@@ -1,0 +1,16 @@
+Package: qbasic
+Type: Package
+Title: q-analogues
+Version: 0.0-1
+Imports: partitions (>= 1.9-17)
+Authors@R: c(
+    person(given=c("Robin", "K. S."), family="Hankin", role = c("aut","cre"), email="hankin.robin@gmail.com", comment = c(ORCID = "0000-0001-5982-0415")))
+Maintainer: Robin K. S. Hankin <hankin.robin@gmail.com>
+Depends: R (>= 3.5.0), methods
+Description: q-analogues of many functions, following Gasper.
+License: GPL-2
+Suggests: magic
+VignetteBuilder: knitr
+URL: https://github.com/RobinHankin/qbasic
+BugReports: https://github.com/RobinHankin/qbasic/issues
+RdMacros: mathjaxr
