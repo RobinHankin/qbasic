@@ -1,0 +1,47 @@
+---
+title: "basic q series with R"
+author: "Robin K. S. Hankin"
+output: html_vignette
+bibliography: qbasic.bib
+vignette: >
+  %\VignetteIndexEntry{qbasic}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(rmarkdown.html_vignette.check_title = FALSE)
+library("qbasic")
+set.seed(1)
+```
+
+<p style="text-align: right;">
+![](`r system.file("help/figures/qbasic.png", package = "qbasic")`){width=10%}
+</p>
+
+
+To cite the `qbasic` package in publications please use
+[@rcore2022]. 
+
+
+$$(a;q)_\infty=\prod_{n=0}^\infty\left(1-aq^n\right)=(1-a)(1-qa)(1-q^2a)\cdots$$
+
+$$(a;q)_n=(a;q)_\infty/(aq^n;q)_\infty=\underbrace{(1-a)(1-qa)(1-q^{n-1}a)}_{\mbox{$n$ terms}}$$
+
+
+The $q$-binomial theorem:
+
+$$\frac{(ax;q)_\infty}{(x;q)_\infty}=\sum_{n=0}^\infty\frac{(a;q)_n}{(q;q)_n}x^n,\qquad\left|x\right|<1$$
+
+The triple product:
+
+$$
+(x;q)_\infty\cdot
+(qx^{-1};q)_\infty\cdot
+(q;q)_\infty=
+\sum_{n=-\infty}^\infty(-1)^nq^{n\choose 2}x^n$$
+
+
+## References
