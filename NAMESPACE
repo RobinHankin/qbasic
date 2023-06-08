@@ -1,1 +1,1 @@
-export("disc", "f", "rhs")
+export("disc", "poch", "rhs")
