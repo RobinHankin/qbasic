@@ -3,9 +3,8 @@
 
 #define STRICT_R_HEADERS
 #include <Rcpp.h>
-#include <iterator>
-#include <vector>
-#include <assert.h>
+#include <cmath>
+
 
 using namespace std;
 using namespace Rcpp;

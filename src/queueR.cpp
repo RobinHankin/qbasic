@@ -1,6 +1,3 @@
-#include <Rcpp.h>
-#include <cmath>
-
 #include "queueR.h"
 
 using namespace Rcpp;
