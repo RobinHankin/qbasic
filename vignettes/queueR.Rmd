@@ -2,7 +2,7 @@
 title: "basic q series with R"
 author: "Robin K. S. Hankin"
 output: html_vignette
-bibliography: qbasic.bib
+bibliography: queueR.bib
 vignette: >
   %\VignetteIndexEntry{qbasic}
   %\VignetteEngine{knitr::rmarkdown}
