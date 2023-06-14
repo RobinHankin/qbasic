@@ -11,8 +11,8 @@ Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
 // complex_multiply
-NumericVector complex_multiply(const NumericVector a_real, const NumericVector a_imag, const NumericVector q_real, const NumericVector q_imag);
-RcppExport SEXP _queueR_complex_multiply(SEXP a_realSEXP, SEXP a_imagSEXP, SEXP q_realSEXP, SEXP q_imagSEXP) {
+NumericVector complex_multiply(const NumericVector a_real, const NumericVector a_imag, const NumericVector q_real, const NumericVector q_imag, const NumericVector n);
+RcppExport SEXP _queueR_complex_multiply(SEXP a_realSEXP, SEXP a_imagSEXP, SEXP q_realSEXP, SEXP q_imagSEXP, SEXP nSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -20,13 +20,14 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const NumericVector >::type a_imag(a_imagSEXP);
     Rcpp::traits::input_parameter< const NumericVector >::type q_real(q_realSEXP);
     Rcpp::traits::input_parameter< const NumericVector >::type q_imag(q_imagSEXP);
-    rcpp_result_gen = Rcpp::wrap(complex_multiply(a_real, a_imag, q_real, q_imag));
+    Rcpp::traits::input_parameter< const NumericVector >::type n(nSEXP);
+    rcpp_result_gen = Rcpp::wrap(complex_multiply(a_real, a_imag, q_real, q_imag, n));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_queueR_complex_multiply", (DL_FUNC) &_queueR_complex_multiply, 4},
+    {"_queueR_complex_multiply", (DL_FUNC) &_queueR_complex_multiply, 5},
     {NULL, NULL, 0}
 };
 
