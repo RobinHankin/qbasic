@@ -1,6 +1,6 @@
-Package: qbasic
+Package: queueR
 Type: Package
-Title: q-analogues
+Title: q-analogues of a range of functions
 Version: 0.0-1
 Imports: partitions (>= 1.9-17)
 Authors@R: c(
