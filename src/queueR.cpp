@@ -3,7 +3,7 @@
 using namespace Rcpp;
 
 // [[Rcpp::export]]
-NumericVector complex_multiply(const NumericVector a_real, const NumericVector a_imag,
+NumericVector pochhammer(const NumericVector a_real, const NumericVector a_imag,
                                const NumericVector q_real, const NumericVector q_imag,
 			       const NumericVector n) {
   const size_t r = a_real.size();
