@@ -1,5 +1,5 @@
 useDynLib(queueR, .registration=TRUE)
-export("disc", "poch", "rhs","complex_multiply")
+export("disc", "poch", "rhs","pochhammer")
 
 importFrom(Rcpp, evalCpp)
 
