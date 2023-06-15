@@ -6,7 +6,19 @@ using namespace Rcpp;
 NumericVector pochhammer(const NumericVector a_real, const NumericVector a_imag,
                                const NumericVector q_real, const NumericVector q_imag,
 			       const NumericVector n) {
+
+  if(
+     (a_real.size() != a_imag.size()) ||
+     (a_real.size() != q_real.size()) ||
+     (a_real.size() != a_imag.size()) ||
+     (a_real.size() !=      n.size())
+     ){
+    throw std::invalid_argument("Two vectors are not of the same length!");
+  }
+  
   const size_t r = a_real.size();
+
+
   NumericVector result_real(r);
   NumericVector result_imag(r);
   const std::complex<double> one (1,0);
