@@ -3,10 +3,11 @@
 using namespace Rcpp;
 
 // [[Rcpp::export]]
-NumericVector pochhammer(const NumericVector a_real, const NumericVector a_imag,
-                               const NumericVector q_real, const NumericVector q_imag,
-			       const NumericVector n) {
-
+NumericVector pochhammer(
+			 const NumericVector a_real, const NumericVector a_imag,
+			 const NumericVector q_real, const NumericVector q_imag,
+			 const NumericVector n) {
+  
   if(
      (a_real.size() != a_imag.size()) ||
      (a_real.size() != q_real.size()) ||
