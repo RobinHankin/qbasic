@@ -48,8 +48,8 @@ NumericVector pochhammer(
 		   (std::imag(outold) != std::imag(out))) && (f < n[i])
 		  ){
 	      outold = out;
-	      out *= (one-s);
-	      s *= q;
+	      out *= (one-s);  // the meat
+	      s *= q;         // also the meat
 	      f++;
 	    }
 	  } // final if..else clause closes
