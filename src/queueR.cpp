@@ -22,6 +22,9 @@ NumericVector pochhammer(const NumericVector a_real, const NumericVector a_imag,
   NumericVector result_real(r);
   NumericVector result_imag(r);
   const std::complex<double> one (1,0);
+  const std::complex<double> zero (0,0);
+  const std::complex<double> nan (R_NaN,R_NaN);
+  const std::complex<double> inf (R_PosInf,R_PosInf);
 
   for (int i = 0; i < r; i++) {
           std::complex<double> out = one;
@@ -32,16 +35,25 @@ NumericVector pochhammer(const NumericVector a_real, const NumericVector a_imag,
 
 	  unsigned int f=0;
 
-    while(
-	  ((std::real(outold) != std::real(out)) || (std::imag(outold) != std::imag(out))) && (f < n[i])
-	  ){
-      outold = out;
-      out *= (one-s);
-      s *= q;
-      f++;
-    }
-    result_real[i] = std::real(out);
-    result_imag[i] = std::imag(out);
+	  if( (std::real(q)==1) && (std::imag(q) == 0) ){
+	    out = zero;
+	  } else if(std::abs(q) == 1){
+	    out = nan;
+	  } else if(std::abs(q) > 1){
+	    out = inf;
+	  } else {
+	    while(
+		  ((std::real(outold) != std::real(out)) ||
+		   (std::imag(outold) != std::imag(out))) && (f < n[i])
+		  ){
+	      outold = out;
+	      out *= (one-s);
+	      s *= q;
+	      f++;
+	    }
+	  } // final if..else clause closes
+	  result_real[i] = std::real(out);
+	  result_imag[i] = std::imag(out);
   } // i loop closes
   return Rcpp::cbind(result_real, result_imag);
 }

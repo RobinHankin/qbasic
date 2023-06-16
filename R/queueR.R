@@ -21,7 +21,7 @@ poch_complex_n <- function(a,q=a,alpha){
     a[wanted] <- a[wanted]/q[wanted]^n[wanted]
   }
 
-  jj <- cbind(Re(a),Im(a),Re(q),Im(q),n)
+  jj <- cbind(Re(c(a)),Im(c(a)),Re(c(q)),Im(c(q)),c(n))
   jj <- pochhammer(a_real=jj[,1],a_imag=jj[,2], q_real=jj[,3],q_imag=jj[,4], n=jj[,5])
   
   z <- jj[,1] + 1i*jj[,2]
