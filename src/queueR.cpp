@@ -34,8 +34,6 @@ NumericVector pochhammer(
     const std::complex<double> q (q_real[i], q_imag[i]);
           std::complex<double> s (a_real[i], a_imag[i]);  // s == subt
 
-	  unsigned int f=0;
-
 	  if( (std::real(q)==1) && (std::imag(q) == 0) ){
 	    out = zero;
 	  } else if(std::abs(q) == 1){
@@ -43,6 +41,7 @@ NumericVector pochhammer(
 	  } else if(std::abs(q) > 1){
 	    out = inf;
 	  } else {
+	    unsigned int f=0;
 	    while(
 		  ((std::real(outold) != std::real(out)) ||
 		   (std::imag(outold) != std::imag(out))) && (f < n[i])
