@@ -1,5 +1,5 @@
 useDynLib(queueR, .registration=TRUE)
-export("disc", "poch", "rhs","pochhammer")
+exportPattern("^[[:alpha:]]+")
 
 importFrom(Rcpp, evalCpp)
 
