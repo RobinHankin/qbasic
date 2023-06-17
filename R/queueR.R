@@ -7,11 +7,12 @@ poch_complex_n <- function(a,q=a,alpha,maxit=1e6){
   jj <- cbind(Re(a),Im(a),Re(q),Im(q),Inf)
   jj <- pochhammer(a_real=jj[,1],a_imag=jj[,2], q_real=jj[,3],q_imag=jj[,4], n=jj[,5],maxit)
   denominator <- jj[,1] + 1i*jj[,2]
-
-  return(numerator/denominator)
+  out <- numerator/denominator
+  if((!is.complex(q)) && !is.complex(a) && !is.complex(alpha)){ out <- Re(out)}
+  return(out)
 }
 
-`poch` <- function(a,q=a,n=Inf,maxit=1e6){
+`poch` <- function(a,q=a,n=Inf,maxit=1e6){ # n integer or infinite
   if(any(n != round(n))){return(poch_complex_n(a,q,n))}
 
   neg_found <- any(n<0)
