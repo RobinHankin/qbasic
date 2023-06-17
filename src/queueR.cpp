@@ -18,7 +18,7 @@ NumericVector pochhammer(
   }
   
   const size_t r = a_real.size();
-
+  const int MAX_ITERATIONS = 100000;
 
   NumericVector result_real(r);
   NumericVector result_imag(r);
@@ -43,17 +43,18 @@ NumericVector pochhammer(
 	  } else {
 	    unsigned int f=0;
 	    while(
-		  ((std::real(outold) != std::real(out)) ||
-		   (std::imag(outold) != std::imag(out))) && (f < n[i])
+		  ((std::real(outold) != std::real(out)) || (std::imag(outold) != std::imag(out))) &&
+		  (f < min((int) n[i], MAX_ITERATIONS))
 		  ){
 	      outold = out;
 	      out *= (one-s);  // the meat
 	      s *= q;         // also the meat
 	      f++;
-	    }
-	  } // final if..else clause closes
-	  result_real[i] = std::real(out);
-	  result_imag[i] = std::imag(out);
+	    } // while loop closes
+	    if(f>MAX_ITERATIONS){ out = nan; }// not converged
+	    result_real[i] = std::real(out);
+	    result_imag[i] = std::imag(out);
+	  }
   } // i loop closes
   return Rcpp::cbind(result_real, result_imag);
 }
