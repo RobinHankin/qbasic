@@ -15,38 +15,38 @@ NumericVector pochhammer(
      (a_real.size() != a_imag.size()) ||
      (a_real.size() !=      n.size())
      ){
-    throw std::invalid_argument("Two vectors are not of the same length!");
+    throw invalid_argument("Two vectors are not of the same length!");
   }
 
   const int max_iterations = (int) maxit[0];
-  if(max_iterations < 0){throw std::invalid_argument("maxit cannot be negative");}
+  if(max_iterations < 0){throw invalid_argument("maxit cannot be negative");}
   
   const size_t r = a_real.size();
 
   NumericVector result_real(r);
   NumericVector result_imag(r);
-  const std::complex<double> one (1,0);
-  const std::complex<double> zero (0,0);
-  const std::complex<double> nan (R_NaN,R_NaN);
-  const std::complex<double> inf (R_PosInf,R_PosInf);
+  const complex<double> one (1,0);
+  const complex<double> zero (0,0);
+  const complex<double> nan (R_NaN,R_NaN);
+  const complex<double> inf (R_PosInf,R_PosInf);
 
   for (int i = 0; i < r; i++) {
-          std::complex<double> out = one;
-          std::complex<double> outold (0,0);
-    const std::complex<double> a (a_real[i], q_imag[i]);
-    const std::complex<double> q (q_real[i], q_imag[i]);
-          std::complex<double> s (a_real[i], a_imag[i]);  // s == subt
+          complex<double> out = one;
+          complex<double> outold (0,0);
+    const complex<double> a (a_real[i], q_imag[i]);
+    const complex<double> q (q_real[i], q_imag[i]);
+          complex<double> s (a_real[i], a_imag[i]);  // s == subt
 
-	  if( (std::real(q)==1) && (std::imag(q) == 0) ){
+	  if( (real(q)==1) && (imag(q) == 0) ){
 	    out = zero;
-	  } else if(std::abs(q) == 1){
-	    out = nan;
-	  } else if(std::abs(q) > 1){
+	  } else if((abs(q) == 1) && isinf(n[i])){
+	    out = nan; 
+	  } else if((abs(q)  > 1) && isinf(n[i])){
 	    out = inf;
 	  } else {
 	    unsigned int f=0;
 	    while(
-		  ((std::real(outold) != std::real(out)) || (std::imag(outold) != std::imag(out))) &&
+		  ((real(outold) != real(out)) || (imag(outold) != imag(out))) &&
 		  (f < min((int) n[i], max_iterations))
 		  ){
 	      outold = out;
@@ -55,8 +55,8 @@ NumericVector pochhammer(
 	      f++;
 	    } // while loop closes
 	    if(f > max_iterations){ out = nan; }// not converged
-	    result_real[i] = std::real(out);
-	    result_imag[i] = std::imag(out);
+	    result_real[i] = real(out);
+	    result_imag[i] = imag(out);
 	  }
   } // i loop closes
   return Rcpp::cbind(result_real, result_imag);
