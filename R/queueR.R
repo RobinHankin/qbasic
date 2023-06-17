@@ -83,3 +83,14 @@ disc <- function(a,x,q){
   return(c(LHS=LHS,RHS=RHS,diff=RHS-LHS))
 }
     
+
+qfactorial <- function(n,q=1){poch(q,q,n)/(1-q)^n}
+qfactorial_int <- function(n,q=1){
+    stopifnot(n>=0)
+    stopifnot(n==round(n))
+    prod(unlist(lapply(sapply(seq_len(n),seq_len),\(x){sum(q^(x-1))})))
+}
+
+qchoose <- function(n,k,q=1){qfactorial(n,q)/(qfactorial(n-k,q)*qfactorial(k,q))}
+
+qgamma <- function(x,q=1){qfactorial(x-1,q)}
