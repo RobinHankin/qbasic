@@ -6,7 +6,8 @@ using namespace Rcpp;
 NumericVector pochhammer(
 			 const NumericVector a_real, const NumericVector a_imag,
 			 const NumericVector q_real, const NumericVector q_imag,
-			 const NumericVector n) {
+			 const NumericVector n,
+			 const NumericVector maxit) {
   
   if(
      (a_real.size() != a_imag.size()) ||
@@ -16,9 +17,11 @@ NumericVector pochhammer(
      ){
     throw std::invalid_argument("Two vectors are not of the same length!");
   }
+
+  const int max_iterations = (int) maxit[0];
+  if(max_iterations < 0){throw std::invalid_argument("maxit cannot be negative");}
   
   const size_t r = a_real.size();
-  const int MAX_ITERATIONS = 100000;
 
   NumericVector result_real(r);
   NumericVector result_imag(r);
@@ -44,14 +47,14 @@ NumericVector pochhammer(
 	    unsigned int f=0;
 	    while(
 		  ((std::real(outold) != std::real(out)) || (std::imag(outold) != std::imag(out))) &&
-		  (f < min((int) n[i], MAX_ITERATIONS))
+		  (f < min((int) n[i], max_iterations))
 		  ){
 	      outold = out;
 	      out *= (one-s);  // the meat
 	      s *= q;         // also the meat
 	      f++;
 	    } // while loop closes
-	    if(f>MAX_ITERATIONS){ out = nan; }// not converged
+	    if(f > max_iterations){ out = nan; }// not converged
 	    result_real[i] = std::real(out);
 	    result_imag[i] = std::imag(out);
 	  }

@@ -1,17 +1,17 @@
-poch_complex_n <- function(a,q=a,alpha){
+poch_complex_n <- function(a,q=a,alpha,maxit=1e6){
   jj <- cbind(Re(a),Im(a),Re(q),Im(q),Inf)
-  jj <- pochhammer(a_real=jj[,1],a_imag=jj[,2], q_real=jj[,3],q_imag=jj[,4], n=jj[,5])
+  jj <- pochhammer(a_real=jj[,1],a_imag=jj[,2], q_real=jj[,3],q_imag=jj[,4], n=jj[,5],maxit)
   numerator <- jj[,1] + 1i*jj[,2]
 
   a <- a*q^alpha
   jj <- cbind(Re(a),Im(a),Re(q),Im(q),Inf)
-  jj <- pochhammer(a_real=jj[,1],a_imag=jj[,2], q_real=jj[,3],q_imag=jj[,4], n=jj[,5])
+  jj <- pochhammer(a_real=jj[,1],a_imag=jj[,2], q_real=jj[,3],q_imag=jj[,4], n=jj[,5],maxit)
   denominator <- jj[,1] + 1i*jj[,2]
 
   return(numerator/denominator)
 }
 
-`poch` <- function(a,q=a,n=Inf){
+`poch` <- function(a,q=a,n=Inf,maxit=1e6){
   if(any(n != round(n))){return(poch_complex_n(a,q,n))}
 
   neg_found <- any(n<0)
@@ -22,7 +22,7 @@ poch_complex_n <- function(a,q=a,alpha){
   }
 
   jj <- cbind(Re(c(a)),Im(c(a)),Re(c(q)),Im(c(q)),c(n))
-  jj <- pochhammer(a_real=jj[,1],a_imag=jj[,2], q_real=jj[,3],q_imag=jj[,4], n=jj[,5])
+  jj <- pochhammer(a_real=jj[,1],a_imag=jj[,2], q_real=jj[,3],q_imag=jj[,4], n=jj[,5],maxit)
   
   z <- jj[,1] + 1i*jj[,2]
   if(neg_found){ z[wanted] <- 1/z[wanted] }

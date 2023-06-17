@@ -11,8 +11,8 @@ Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
 // pochhammer
-NumericVector pochhammer(const NumericVector a_real, const NumericVector a_imag, const NumericVector q_real, const NumericVector q_imag, const NumericVector n);
-RcppExport SEXP _queueR_pochhammer(SEXP a_realSEXP, SEXP a_imagSEXP, SEXP q_realSEXP, SEXP q_imagSEXP, SEXP nSEXP) {
+NumericVector pochhammer(const NumericVector a_real, const NumericVector a_imag, const NumericVector q_real, const NumericVector q_imag, const NumericVector n, const NumericVector maxit);
+RcppExport SEXP _queueR_pochhammer(SEXP a_realSEXP, SEXP a_imagSEXP, SEXP q_realSEXP, SEXP q_imagSEXP, SEXP nSEXP, SEXP maxitSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -21,13 +21,14 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const NumericVector >::type q_real(q_realSEXP);
     Rcpp::traits::input_parameter< const NumericVector >::type q_imag(q_imagSEXP);
     Rcpp::traits::input_parameter< const NumericVector >::type n(nSEXP);
-    rcpp_result_gen = Rcpp::wrap(pochhammer(a_real, a_imag, q_real, q_imag, n));
+    Rcpp::traits::input_parameter< const NumericVector >::type maxit(maxitSEXP);
+    rcpp_result_gen = Rcpp::wrap(pochhammer(a_real, a_imag, q_real, q_imag, n, maxit));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_queueR_pochhammer", (DL_FUNC) &_queueR_pochhammer, 5},
+    {"_queueR_pochhammer", (DL_FUNC) &_queueR_pochhammer, 6},
     {NULL, NULL, 0}
 };
 
