@@ -43,14 +43,11 @@ poch(a, q = a, n = Inf,maxit=1e6)
     whence
 
     \mjdeqn{
-      \left(a;q\right)_{-n}=\prod_{k=1}^{\infty}\frac{1}{\left(1-a/q^k\right)
-      }{
-	omitted
-      }
-
-    
+      \left(a;q\right)_{-n}=\prod_{k=1}^{\infty}
+      \frac{1}{\left(1-a/q^k\right)}}{omitted}
   }
-\value{Returns a complex vector}
+\value{Returns a complex vector with attributes inherited from the
+      appropriate argument}
 \author{Robin K. S. Hankin}
 \examples{
 poch(0.6+0.2i,0.9)
