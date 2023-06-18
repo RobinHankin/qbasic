@@ -55,9 +55,9 @@ NumericVector pochhammer(
 	      f++;
 	    } // while loop closes
 	    if(f > max_iterations){ out = nan; }// not converged
-	    result_real[i] = real(out);
-	    result_imag[i] = imag(out);
-	  }
+	  } // else clause closes
+	  result_real[i] = real(out);
+	  result_imag[i] = imag(out);
   } // i loop closes
   return Rcpp::cbind(result_real, result_imag);
 }
