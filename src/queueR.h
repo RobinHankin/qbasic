@@ -8,3 +8,9 @@
 
 using namespace std;
 using namespace Rcpp;
+
+
+const complex<double> one (1,0);
+const complex<double> zero (0,0);
+const complex<double> cnan (R_NaN,R_NaN);
+const complex<double> cinf (R_PosInf,R_PosInf);

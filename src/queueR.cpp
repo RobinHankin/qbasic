@@ -2,6 +2,7 @@
 
 using namespace Rcpp;
 
+
 // [[Rcpp::export]]
 NumericVector pochhammer(
 			 const NumericVector a_real, const NumericVector a_imag,
@@ -25,10 +26,6 @@ NumericVector pochhammer(
 
   NumericVector result_real(r);
   NumericVector result_imag(r);
-  const complex<double> one (1,0);
-  const complex<double> zero (0,0);
-  const complex<double> nan (R_NaN,R_NaN);
-  const complex<double> inf (R_PosInf,R_PosInf);
 
   for (int i = 0; i < r; i++) {
           complex<double> out = one;
@@ -40,9 +37,9 @@ NumericVector pochhammer(
 	  if( (real(q)==1) && (imag(q) == 0) ){
 	    out = zero;
 	  } else if((abs(q) == 1) && isinf(n[i])){
-	    out = nan; 
+	    out = cnan; 
 	  } else if((abs(q)  > 1) && isinf(n[i])){
-	    out = inf;
+	    out = cinf;
 	  } else {
 	    unsigned int f=0;
 	    while(
@@ -54,7 +51,7 @@ NumericVector pochhammer(
 	      s *= q;         // also the meat
 	      f++;
 	    } // while loop closes
-	    if(f > max_iterations){ out = nan; }// not converged
+	    if(f > max_iterations){ out = cnan; }// not converged
 	  } // else clause closes
 	  result_real[i] = real(out);
 	  result_imag[i] = imag(out);
