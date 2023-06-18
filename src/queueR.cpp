@@ -84,10 +84,8 @@ NumericVector qexp_C(
     complex<double> out    = zero;
     complex<double> outold = one;
     complex<double> term   = one;
-    complex<double> sumq   = one;
     complex<double> qn     = one;
     complex<double> d      = zero;
-    complex<double> fact   = one;
     const complex<double> z (z_real[i], z_imag[i]);
     const complex<double> q (q_real[i], q_imag[i]);
     unsigned int f=0;
