@@ -5,3 +5,7 @@ pochhammer <- function(a_real, a_imag, q_real, q_imag, n, maxit) {
     .Call(`_queueR_pochhammer`, a_real, a_imag, q_real, q_imag, n, maxit)
 }
 
+qexp_C <- function(z_real, z_imag, q_real, q_imag, maxit) {
+    .Call(`_queueR_qexp_C`, z_real, z_imag, q_real, q_imag, maxit)
+}
+

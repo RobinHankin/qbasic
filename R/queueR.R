@@ -96,5 +96,20 @@ qfactorial_int <- function(n,q=1){
 }
 
 qchoose <- function(n,k,q=1){qfactorial(n,q)/(qfactorial(n-k,q)*qfactorial(k,q))}
-
 qgamma <- function(x,q=1){qfactorial(x-1,q)}
+
+qexp <- function(z,q=1){
+    jj <- cbind(Re(z),Im(z),Re(q),Im(q))
+    jj <- qexponential_C(z_real=jj[,1],z_imag=jj[,2], q_real=jj[,3],q_imag=jj[,4], maxit=1e6)
+    out <- (jj[,1] + 1i*jj[,2])
+    if((!is.complex(z)) && !is.complex(q)){z <- Re(z)}
+    if(length(z) >= length(q)){attributes(out) <- attributes(z)} else {attributes(z) <- attributes(q)}
+    return(out)
+}
+
+
+qn <- function(n,q=1){
+    out <- (1-q^n)/(1-q)
+    out[q==1] <- n
+    return(out)
+}
