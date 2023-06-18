@@ -82,9 +82,13 @@ disc <- function(a,x,q){
   RHS <- rhs(a,q,x)
   return(c(LHS=LHS,RHS=RHS,diff=RHS-LHS))
 }
-    
 
-qfactorial <- function(n,q=1){poch(q,q,n)/(1-q)^n}
+qfactorial <- function(n,q=1){
+    out <- poch(q,q,n)/(1-q)^n
+    out[q==1] <- factorial(n[q==1])
+    return(out)
+}
+
 qfactorial_int <- function(n,q=1){
     stopifnot(n>=0)
     stopifnot(n==round(n))
