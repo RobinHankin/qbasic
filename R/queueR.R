@@ -41,6 +41,8 @@ poch_complex_n <- function(a,q=a,alpha,maxit=1e6){
   return(z)
 }
 
+`pochprod` <- function(avec,q=1,n=Inf){ prod(sapply(avec,function(a){poch(a,q,n)}))}
+
 `pochR` <- function(a,q=a,n=Inf){
   if(any(n<0)){
     wanted <- which(n<0)
@@ -98,6 +100,8 @@ qfactorial_int <- function(n,q=1){
 qchoose <- function(n,k,q=1){qfactorial(n,q)/(qfactorial(n-k,q)*qfactorial(k,q))}
 qgamma <- function(x,q=1){qfactorial(x-1,q)}
 
+qbinom <- function(n,k,q=1){ poch(q,q,n)/poch(q,q,k)/poch(q,q,n-k)}
+
 qexp_incorrect <- function(z,q=1){
     jj <- cbind(Re(z),Im(z),Re(q),Im(q))
     jj <- qexp_C(z_real=jj[,1],z_imag=jj[,2], q_real=jj[,3],q_imag=jj[,4], maxit=1e6)
@@ -110,8 +114,17 @@ qexp_incorrect <- function(z,q=1){
 q_exp <- function(x,q){1/poch(x,q)}
 q_Exp <- function(x,q){poch(-x,q)}
 
+q_sin <- function(x,q){(q_exp(1i*x,q) - q_exp(1i*x))/(2i)}
+q_cos <- function(x,q){(q_exp(1i*x,q) + q_exp(1i*x))/(2 )}
+
+q_Sin <- function(x,q){(q_Exp(1i*x,q) - q_Exp(1i*x))/(2i)}
+q_Cos <- function(x,q){(q_Exp(1i*x,q) + q_Exp(1i*x))/(2 )}
+
+
+
 qn <- function(n,q=1){
     out <- (1-q^n)/(1-q)
     out[q==1] <- n
     return(out)
 }
+
