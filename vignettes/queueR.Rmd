@@ -140,6 +140,19 @@ $$
 \lim_{q\longrightarrow 1^-}e_q(z(1-q))=\lim_{q\longrightarrow 1^-}E_q(z(1-q))=e^z
 $$
 
+## q-Hypergeometric functions
 
+Gasper defines
+
+$$
+{}_r\phi_s\left(a_1,\ldots,a_r;b_1,\ldots,b_s;q,z\right)= {}_r\phi_s\left[
+{a_1,a_2,\ldots,a_r\atop b_1,\ldots b_s};q,z\right]
+$$
+
+$$
+=
+\sum_{n\geqslant 0}\frac{\left(a_1,\ldots, a_r;q\right)}{\left(q,b_1,\ldots, b_s;q\right)}
+\left[(-1)^nq^{n\choose 2}\right] z^n
+$$
 
 ## References
