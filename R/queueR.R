@@ -97,13 +97,13 @@ qfactorial_int <- function(n,q=1){
     prod(unlist(lapply(sapply(seq_len(n),seq_len),\(x){sum(q^(x-1))})))
 }
 
-qchoose <- function(n,k,q=1){qfactorial(n,q)/(qfactorial(n-k,q)*qfactorial(k,q))}
-qgamma <- function(x,q=1){qfactorial(x-1,q)}
+q_choose <- function(n,k,q=1){qfactorial(n,q)/(qfactorial(n-k,q)*qfactorial(k,q))}
+q_gamma <- function(x,q=1){qfactorial(x-1,q)}
 
 qbinom <- function(n,k,q=1){ poch(q,q,n)/poch(q,q,k)/poch(q,q,n-k)}
 
-qexp_incorrect <- function(z,q=1){
-    jj <- cbind(Re(z),Im(z),Re(q),Im(q))
+q_myexp <- function(z,q=1){
+    jj <- cbind(c(Re(z)),c(Im(z)),c(Re(q)),c(Im(q)))
     jj <- qexp_C(z_real=jj[,1],z_imag=jj[,2], q_real=jj[,3],q_imag=jj[,4], maxit=1e6)
     out <- (jj[,1] + 1i*jj[,2])
     if((!is.complex(z)) && !is.complex(q)){z <- Re(z)}
@@ -120,11 +120,10 @@ q_cos <- function(x,q){(q_exp(1i*x,q) + q_exp(1i*x))/(2 )}
 q_Sin <- function(x,q){(q_Exp(1i*x,q) - q_Exp(1i*x))/(2i)}
 q_Cos <- function(x,q){(q_Exp(1i*x,q) + q_Exp(1i*x))/(2 )}
 
-
+q_beta <- function(a,b,q){q_gamma(a,q)*q_gamma(b,q)/qgamma(a+b,q)}
 
 qn <- function(n,q=1){
     out <- (1-q^n)/(1-q)
     out[q==1] <- n
     return(out)
 }
-
