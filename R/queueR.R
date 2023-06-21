@@ -85,7 +85,7 @@ disc <- function(a,x,q){
   return(c(LHS=LHS,RHS=RHS,diff=RHS-LHS))
 }
 
-qfactorial <- function(n,q=1){
+q_factorial <- function(n,q=1){
     out <- poch(q,q,n)/(1-q)^n
     out[q==1] <- factorial(n[q==1])
     return(out)
@@ -97,10 +97,9 @@ qfactorial_int <- function(n,q=1){
     prod(unlist(lapply(sapply(seq_len(n),seq_len),\(x){sum(q^(x-1))})))
 }
 
-q_choose <- function(n,k,q=1){qfactorial(n,q)/(qfactorial(n-k,q)*qfactorial(k,q))}
-q_gamma <- function(x,q=1){qfactorial(x-1,q)}
-
-qbinom <- function(n,k,q=1){ poch(q,q,n)/poch(q,q,k)/poch(q,q,n-k)}
+q_choose <- function(n,k,q=1){q_factorial(n,q)/(q_factorial(n-k,q)*q_factorial(k,q))}
+q_gamma <- function(x,q=1){q_factorial(x-1,q)}
+q_binom <- function(n,k,q=1){ poch(q,q,n)/poch(q,q,k)/poch(q,q,n-k)}
 
 q_myexp <- function(z,q=1){
     jj <- cbind(c(Re(z)),c(Im(z)),c(Re(q)),c(Im(q)))
@@ -122,7 +121,7 @@ q_Cos <- function(x,q){(q_Exp(1i*x,q) + q_Exp(1i*x))/(2 )}
 
 q_beta <- function(a,b,q){q_gamma(a,q)*q_gamma(b,q)/qgamma(a+b,q)}
 
-qn <- function(n,q=1){
+q_n <- function(n,q=1){
     out <- (1-q^n)/(1-q)
     out[q==1] <- n
     return(out)
