@@ -134,11 +134,13 @@ $$e_q(z)=\frac{1}{(z;q)_\infty}\qquad |z|<1$$
 
 $$E_q(z)=(-z;q)_\infty$$
 
-We have
+We have $e_q(z)E_q(-z)=1$ and
 
 $$
 \lim_{q\longrightarrow 1^-}e_q(z(1-q))=\lim_{q\longrightarrow 1^-}E_q(z(1-q))=e^z
 $$
+
+
 
 ## q-Hypergeometric functions
 
