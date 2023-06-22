@@ -9,3 +9,7 @@ qexp_C <- function(z_real, z_imag, q_real, q_imag, maxit) {
     .Call(`_queueR_qexp_C`, z_real, z_imag, q_real, q_imag, maxit)
 }
 
+BasicHypergeometric <- function(z_real, z_imag, q_real, q_imag, a_real, a_imag, b_real, b_imag, maxit) {
+    .Call(`_queueR_BasicHypergeometric`, z_real, z_imag, q_real, q_imag, a_real, a_imag, b_real, b_imag, maxit)
+}
+
