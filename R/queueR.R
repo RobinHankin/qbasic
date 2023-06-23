@@ -128,10 +128,10 @@ q_n <- function(n,q=1){
 }
 
 q_hypergeo <- function(z,q, a,b, maxit = 2000){
-  jj <- rbind(c(z),c(q))
+  jj <- cbind(c(z),c(q))
 
-  jj  <- BasicHypergeometric(z_real=Re(jj[,1], z_imag=Im(jj[,1]), q_real=Re(jj[,2]), q_imag=Im(jj[,2]),
-                                       a_real=Re(a), a_imag=Im(a), b_real=Re(b), b_imag=Im(b), maxit=maxit))
+  jj  <- BasicHypergeometric(z_real=Re(jj[,1]), z_imag=Im(jj[,1]), q_real=Re(jj[,2]), q_imag=Im(jj[,2]),
+                                       a_real=Re(a), a_imag=Im(a), b_real=Re(b), b_imag=Im(b), maxit=maxit)
   return(jj)
 }
 
